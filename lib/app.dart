@@ -18,8 +18,6 @@ class App extends ConsumerWidget {
   }
 
   ProviderScope _buildWithScope(BuildContext context, WidgetRef ref) {
-    final overrides = [];
-
     return ProviderScope(child: _build(context, ref));
   }
 
