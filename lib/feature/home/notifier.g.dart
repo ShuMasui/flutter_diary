@@ -102,7 +102,7 @@ String _$diaryListHash() => r'c1dc454f576ab40cc14a4a633aaeba01e4a520a7';
 const homeProvider = HomeNotifierProvider._();
 
 final class HomeNotifierProvider
-    extends $AsyncNotifierProvider<HomeNotifier, List<Diary>> {
+    extends $NotifierProvider<HomeNotifier, List<Diary>> {
   const HomeNotifierProvider._()
     : super(
         from: null,
@@ -120,22 +120,30 @@ final class HomeNotifierProvider
   @$internal
   @override
   HomeNotifier create() => HomeNotifier();
+
+  /// {@macro riverpod.override_with_value}
+  Override overrideWithValue(List<Diary> value) {
+    return $ProviderOverride(
+      origin: this,
+      providerOverride: $SyncValueProvider<List<Diary>>(value),
+    );
+  }
 }
 
-String _$homeNotifierHash() => r'28e781e9b897cf6482afa31ad8847fd296085534';
+String _$homeNotifierHash() => r'e4e4a040547811c97ac4a4ca5a3a33e49298ca20';
 
-abstract class _$HomeNotifier extends $AsyncNotifier<List<Diary>> {
-  FutureOr<List<Diary>> build();
+abstract class _$HomeNotifier extends $Notifier<List<Diary>> {
+  List<Diary> build();
   @$mustCallSuper
   @override
   void runBuild() {
     final created = build();
-    final ref = this.ref as $Ref<AsyncValue<List<Diary>>, List<Diary>>;
+    final ref = this.ref as $Ref<List<Diary>, List<Diary>>;
     final element =
         ref.element
             as $ClassProviderElement<
-              AnyNotifier<AsyncValue<List<Diary>>, List<Diary>>,
-              AsyncValue<List<Diary>>,
+              AnyNotifier<List<Diary>, List<Diary>>,
+              List<Diary>,
               Object?,
               Object?
             >;
@@ -199,7 +207,7 @@ final class DiaryFamilyProvider extends $FunctionalProvider<Diary, Diary, Diary>
   }
 }
 
-String _$diaryFamilyHash() => r'e9b486e3d5e59f5bc22fe1696bcca891f781c3fb';
+String _$diaryFamilyHash() => r'19b4e9e9ddebce06910a10d7c8b307e784b4b31b';
 
 final class DiaryFamilyFamily extends $Family
     with $FunctionalFamilyOverride<Diary, String> {

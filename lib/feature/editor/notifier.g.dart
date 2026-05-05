@@ -33,7 +33,7 @@ final class EditorNotifierProvider
   EditorNotifier create() => EditorNotifier();
 }
 
-String _$editorNotifierHash() => r'74c48d7fd1d8c35f95b3c493486bfc93f6444e81';
+String _$editorNotifierHash() => r'c33dc698d31aeae92a83ea877f419134036d1e9b';
 
 abstract class _$EditorNotifier extends $AsyncNotifier<void> {
   FutureOr<void> build();

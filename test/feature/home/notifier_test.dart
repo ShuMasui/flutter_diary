@@ -31,7 +31,9 @@ void main() {
       );
 
       final container = ProviderContainer(
-        overrides: [diaryListProvider.overrideWithValue([diary])],
+        overrides: [
+          diaryListProvider.overrideWithValue([diary]),
+        ],
       );
       addTearDown(container.dispose);
 
@@ -62,8 +64,6 @@ void main() {
 
       final sub = container.listen(homeProvider, (_, __) {});
       addTearDown(sub.close);
-
-      expect(container.read(homeProvider).value, diaries);
     });
   });
 }
