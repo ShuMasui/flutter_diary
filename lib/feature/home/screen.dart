@@ -10,6 +10,7 @@ import 'package:go_router/go_router.dart';
 // *****************************************************************
 
 import './notifier.dart';
+import '../../gen/assets.gen.dart';
 
 // *****************************************************************
 
@@ -37,7 +38,7 @@ class Screen extends ConsumerWidget {
                   );
                 } else {
                   img = SvgPicture.asset(
-                    'assets/noimage.svg',
+                    Assets.noimage.path,
                     width: 100,
                     height: 100,
                   );

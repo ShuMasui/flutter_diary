@@ -59,6 +59,8 @@ dev_dependencies:
 
   flutter_lints: 
 
+  flutter_gen_runner: 
+
 
 flutter:
 
@@ -67,3 +69,7 @@ flutter:
 
   assets:
     - assets/noimage.svg
+
+flutter_gen:
+  integrations:
+    flutter_svg: true
