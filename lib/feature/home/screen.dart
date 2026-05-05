@@ -46,6 +46,7 @@ class Screen extends ConsumerWidget {
                 return Padding(
                   padding: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
                   child: GestureDetector(
+                    // modal画面から，戻ってくる際に，popを使って，デフォルトの繊維アニメーションを使うために，pushを使って画面遷移にする
                     onTap: () => context.pushNamed(
                       'modal',
                       pathParameters: {'id': diaries[index].id.toString()},
@@ -66,13 +67,11 @@ class Screen extends ConsumerWidget {
                       child: ListTile(
                         leading: img,
                         title: diaries[index].content.length > 9
-                            ? Text(
-                                '${diaries[index].title.substring(0, 10)}...',
-                              )
+                            ? Text('${diaries[index].title.substring(0, 8)}...')
                             : Text(diaries[index].title),
                         subtitle: diaries[index].content.length > 11
                             ? Text(
-                                '${diaries[index].content.substring(0, 12)}...',
+                                '${diaries[index].content.substring(0, 10)}...',
                               )
                             : Text(diaries[index].content),
                       ),

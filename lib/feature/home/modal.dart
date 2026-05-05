@@ -13,9 +13,9 @@ import './notifier.dart';
 // *****************************************************************
 
 class Screen extends ConsumerWidget {
-  Screen({required this.id});
+  const Screen({required this.id});
 
-  late final String id;
+  final String id;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -44,47 +44,53 @@ class Screen extends ConsumerWidget {
               onPressed: () => context.pop(),
               child: const Text('閉じる'),
             ),
-            Padding(
-              padding: const EdgeInsets.all(20.0),
-              child: Column(
-                children: [
-                  File(diary.path!).existsSync()
-                      ? Image.file(
-                          File(diary.path!),
-                          width: 150,
-                          height: 150,
-                          fit: BoxFit.cover,
-                        )
-                      : SvgPicture.asset(
-                          'assets/noimage.svg',
-                          width: 150,
-                          height: 150,
+            Expanded(
+              child: Padding(
+                padding: const EdgeInsets.all(20.0),
+                child: Column(
+                  children: [
+                    File(diary.path!).existsSync()
+                        ? Image.file(
+                            File(diary.path!),
+                            width: 150,
+                            height: 150,
+                            fit: BoxFit.cover,
+                          )
+                        : SvgPicture.asset(
+                            'assets/noimage.svg',
+                            width: 150,
+                            height: 150,
+                          ),
+                    SizedBox(height: 20),
+                    Align(
+                      alignment: Alignment.centerLeft,
+                      child: Text(
+                        'Title',
+                        style: TextStyle(
+                          fontSize: 24,
+                          fontWeight: FontWeight.bold,
                         ),
-                  SizedBox(height: 20),
-                  Align(
-                    alignment: Alignment.centerLeft,
-                    child: Text(
-                      'Title',
-                      style: TextStyle(
-                        fontSize: 24,
-                        fontWeight: FontWeight.bold,
                       ),
                     ),
-                  ),
-                  Text(diary.title),
-                  SizedBox(height: 20),
-                  Align(
-                    alignment: Alignment.centerLeft,
-                    child: Text(
-                      'Content',
-                      style: TextStyle(
-                        fontSize: 24,
-                        fontWeight: FontWeight.bold,
+                    Text(diary.title),
+                    SizedBox(height: 20),
+                    Align(
+                      alignment: Alignment.centerLeft,
+                      child: Text(
+                        'Content',
+                        style: TextStyle(
+                          fontSize: 24,
+                          fontWeight: FontWeight.bold,
+                        ),
                       ),
                     ),
-                  ),
-                  Text(diary.content),
-                ],
+                    // 確保可能な最大限の長さを確保する（逆にいうと，確保できない量を確保しようとはしないから，サイズを安全なエリアで固定化できる）
+                    Expanded(
+                      // 最大化されたエリアの中で，あふれるなら，スクロールさせる
+                      child: SingleChildScrollView(child: Text(diary.content)),
+                    ),
+                  ],
+                ),
               ),
             ),
           ],
